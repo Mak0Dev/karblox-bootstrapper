@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  KarbloxBootstrapper - standalone player launcher (no boost, no Trunk2012).
+  Everything is vendored: Bootstrapper/, ClientShared/, Win/, assets/.
+  Only deps: Windows SDK + ATL (static), system libs. Static CRT (/MT).
+-->
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,9 +26,6 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FD5E0FFA-8A37-4523-AB57-D3363C5A9C2A}</ProjectGuid>
     <RootNamespace>BootstrapperClient</RootNamespace>
-    <SccProjectName>Perforce Project</SccProjectName>
-    <SccLocalPath>..</SccLocalPath>
-    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,103 +78,80 @@
     <OutDir>bin\$(Configuration)\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\$(Configuration)\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <CustomBuildStep>
-      <Message />
-      <Command />
-    </CustomBuildStep>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\Bootstrapper;$(CONTRIB_PATH)\boost_1_55_0\include;$(CONTRIB_PATH)\boost_1_50_0\src;..\..\Win;..\..\ClientShared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BOOST_THREAD_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Bootstrapper;ClientShared;Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(CONTRIB_PATH)\boost_1_56_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Iphlpapi.lib;taskschd.lib;mstask.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)RobloxPlayerLauncher.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command />
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <CustomBuildStep>
-      <Message />
-      <Command />
-    </CustomBuildStep>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\Bootstrapper;$(CONTRIB_PATH)\boost_1_55_0\include;$(CONTRIB_PATH)\boost_1_50_0\src;..\..\Win;..\..\ClientShared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;BOOST_THREAD_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Bootstrapper;ClientShared;Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(CONTRIB_PATH)\boost_1_56_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Iphlpapi.lib;taskschd.lib;mstask.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)RobloxPlayerLauncher.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command />
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <CustomBuildStep>
-      <Message />
-      <Command />
-    </CustomBuildStep>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>..\Bootstrapper;$(CONTRIB_PATH)\boost_1_55_0\include;$(CONTRIB_PATH)\boost_1_50_0\src;..\..\Win;..\..\ClientShared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;BOOST_THREAD_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>Bootstrapper;ClientShared;Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(CONTRIB_PATH)\boost_1_56_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Iphlpapi.lib;taskschd.lib;mstask.lib;libboost_thread-vc120-mt-1_56.lib;libboost_system-vc120-mt-1_56.lib;libboost_date_time-vc120-mt-1_56.lib;libboost_filesystem-vc120-mt-1_56.lib;libboost_chrono-vc120-mt-1_56.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Iphlpapi.lib;taskschd.lib;mstask.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)RobloxPlayerLauncher.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -180,15 +159,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command />
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <CustomBuildStep>
-      <Message />
-      <Command />
-    </CustomBuildStep>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
@@ -196,16 +168,15 @@
       <Optimization>MinSpace</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>..\Bootstrapper;$(CONTRIB_PATH)\boost_1_55_0\include;$(CONTRIB_PATH)\boost_1_50_0\src;..\..\Win;..\..\ClientShared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;BOOST_THREAD_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>Bootstrapper;ClientShared;Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(CONTRIB_PATH)\boost_1_56_0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Iphlpapi.lib;taskschd.lib;mstask.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)RobloxPlayerLauncher.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -214,47 +185,90 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command />
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ClientShared\CountersClient.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeader>
+    <ClCompile Include="Bootstrapper\Bootstrapper.cpp" />
+    <ClCompile Include="Bootstrapper\ComModule.cpp" />
+    <ClCompile Include="Bootstrapper\FileDeployer.cpp" />
+    <ClCompile Include="Bootstrapper\FileSystem.cpp" />
+    <ClCompile Include="Bootstrapper\GoogleAnalyticsHelper.cpp" />
+    <ClCompile Include="Bootstrapper\HttpTools.cpp" />
+    <ClCompile Include="Bootstrapper\LegacyDialog.cpp" />
+    <ClCompile Include="Bootstrapper\MainDialog.cpp" />
+    <ClCompile Include="Bootstrapper\MD5Hasher.cpp" />
+    <ClCompile Include="Bootstrapper\ProgressDialog.cpp" />
+    <ClCompile Include="Bootstrapper\SettingsLoader.cpp" />
+    <ClCompile Include="Bootstrapper\SharedHelpers.cpp" />
+    <ClCompile Include="Bootstrapper\ShutdownDialog.cpp" />
+    <ClCompile Include="Bootstrapper\ShutdownRobloxApp.cpp" />
+    <ClCompile Include="Bootstrapper\stdafx.cpp">
+      <ObjectFileName>$(IntDir)BootstrapperStdAfx.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="..\..\ClientShared\SimpleJSON.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\Bootstrapper\SettingsLoader.cpp" />
+    <ClCompile Include="Bootstrapper\TaskDialog.cpp" />
+    <ClCompile Include="Bootstrapper\Unzipper.cpp" />
+    <ClCompile Include="Bootstrapper\zlib\adler32.c" />
+    <ClCompile Include="Bootstrapper\zlib\compress.c" />
+    <ClCompile Include="Bootstrapper\zlib\crc32.c" />
+    <ClCompile Include="Bootstrapper\zlib\deflate.c" />
+    <ClCompile Include="Bootstrapper\zlib\infback.c" />
+    <ClCompile Include="Bootstrapper\zlib\inffast.c" />
+    <ClCompile Include="Bootstrapper\zlib\inflate.c" />
+    <ClCompile Include="Bootstrapper\zlib\inftrees.c" />
+    <ClCompile Include="Bootstrapper\zlib\ioapi.c" />
+    <ClCompile Include="Bootstrapper\zlib\iowin32.c" />
+    <ClCompile Include="Bootstrapper\zlib\trees.c" />
+    <ClCompile Include="Bootstrapper\zlib\uncompr.c" />
+    <ClCompile Include="Bootstrapper\zlib\unzip.c" />
+    <ClCompile Include="Bootstrapper\zlib\zip.c" />
+    <ClCompile Include="Bootstrapper\zlib\zutil.c" />
+    <ClCompile Include="ClientShared\format_string.cpp" />
+    <ClCompile Include="ClientShared\StringConv.cpp" />
+    <ClCompile Include="ClientShared\CookiesEngine.cpp" />
+    <ClCompile Include="ClientShared\InfluxDbHelper.cpp" />
+    <ClCompile Include="ClientShared\RobloxServicesTools.cpp" />
+    <ClCompile Include="ClientShared\CountersClient.cpp" />
+    <ClCompile Include="ClientShared\SimpleJSON.cpp" />
+    <ClCompile Include="Win\VersionInfo.cpp" />
+    <ClCompile Include="Win\VistaTools.cpp" />
     <ClCompile Include="BootstrapperClient.cpp" />
     <ClCompile Include="ClientInstallerSettings.cpp" />
     <ClCompile Include="ClientProgressDialog.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ClientShared\CountersClient.h" />
-    <ClInclude Include="..\..\ClientShared\SimpleJSON.h" />
-    <ClInclude Include="..\Bootstrapper\resource.h" />
-    <ClInclude Include="..\Bootstrapper\SettingsLoader.h" />
+    <ClInclude Include="Bootstrapper\Bootstrapper.h" />
+    <ClInclude Include="Bootstrapper\BootstrapperSite.h" />
+    <ClInclude Include="Bootstrapper\ComModule.h" />
+    <ClInclude Include="Bootstrapper\CommonResourceConstants.h" />
+    <ClInclude Include="Bootstrapper\FileDeployer.h" />
+    <ClInclude Include="Bootstrapper\FileSystem.h" />
+    <ClInclude Include="Bootstrapper\GoogleAnalyticsHelper.h" />
+    <ClInclude Include="Bootstrapper\HttpTools.h" />
+    <ClInclude Include="Bootstrapper\LegacyDialog.h" />
+    <ClInclude Include="Bootstrapper\MainDialog.h" />
+    <ClInclude Include="Bootstrapper\MD5Hasher.h" />
+    <ClInclude Include="Bootstrapper\Progress.h" />
+    <ClInclude Include="Bootstrapper\ProgressDialog.h" />
+    <ClInclude Include="Bootstrapper\Resource.h" />
+    <ClInclude Include="Bootstrapper\SettingsLoader.h" />
+    <ClInclude Include="Bootstrapper\SharedHelpers.h" />
+    <ClInclude Include="Bootstrapper\ShutdownDialog.h" />
+    <ClInclude Include="Bootstrapper\ShutdownRobloxApp.h" />
+    <ClInclude Include="Bootstrapper\stdafx.h" />
+    <ClInclude Include="Bootstrapper\targetver.h" />
+    <ClInclude Include="Bootstrapper\TaskDialog.h" />
+    <ClInclude Include="Bootstrapper\Unzipper.h" />
+    <ClInclude Include="ClientShared\format_string.h" />
+    <ClInclude Include="ClientShared\StringConv.h" />
+    <ClInclude Include="ClientShared\CookiesEngine.h" />
+    <ClInclude Include="ClientShared\InfluxDbHelper.h" />
+    <ClInclude Include="ClientShared\RobloxServicesTools.h" />
+    <ClInclude Include="ClientShared\CountersClient.h" />
+    <ClInclude Include="ClientShared\SimpleJSON.h" />
+    <ClInclude Include="Win\VersionInfo.h" />
+    <ClInclude Include="Win\VistaTools.h" />
+    <ClInclude Include="Win\SharedLauncher.h" />
+    <ClInclude Include="Win\ProcessInformation.h" />
     <ClInclude Include="BootstrapperClient.h" />
     <ClInclude Include="ClientInstallerSettings.h" />
     <ClInclude Include="ClientProgressDialog.h" />
@@ -262,33 +276,11 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Bootstrapper\assets\bitmap1.bmp" />
-    <None Include="..\Bootstrapper\assets\bitmap3.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_cancel-ON.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_cancel.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_launchstudio-ON.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_launchstudio.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_ok-ON.bmp" />
-    <None Include="..\Bootstrapper\assets\btn_ok.bmp" />
-    <None Include="..\Bootstrapper\assets\logo_meatball%401x.bmp" />
-    <None Include="..\Bootstrapper\assets\logo_robloxstudio%401x.bmp" />
-    <None Include="..\Bootstrapper\assets\txt_backto%401x.bmp" />
-    <None Include="..\Bootstrapper\assets\txt_backto-ON%401x .bmp" />
-    <None Include="..\Bootstrapper\assets\txt_success%401x.bmp" />
-    <None Include="..\Bootstrapper\assets\txt_success-player%401x.bmp" />
-    <None Include="..\Bootstrapper\Bootstrapper.ico" />
-    <None Include="assets\logo_robloxstudio%401x.bmp" />
-    <None Include="Bootstrapper.ico" />
+    <ResourceCompile Include="Bootstrapper\BootstrapperClient.rc" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\Bootstrapper\BootstrapperClient.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bootstrapper\Bootstrapper.vcxproj">
-      <Project>{c94de431-40b7-4bbb-9759-e58a58beae17}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+    <None Include="Bootstrapper.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,7 +19,7 @@ private:
 		SharedLauncher::LaunchMode launchMode;
 		std::string browserTrackerId;
 	};
-	boost::scoped_ptr<PlayArgs> playArgs;
+	std::unique_ptr<PlayArgs> playArgs;
 
 	std::wstring _regSubPath;
 	std::wstring _regPath;
@@ -33,7 +33,7 @@ private:
 	int endYear, endMonth, endDay;
 
 	ClientInstallerSettings settings;
-	boost::scoped_ptr<CountersClient> counters;
+	std::unique_ptr<CountersClient> counters;
 	ComModule proxyModule;
 	ComModule proxyModule64;
 

@@ -1,0 +1,22 @@
+#pragma once
+
+#include <functional>
+#include "format_string.h"
+#include "BootstrapperSite.h"
+
+namespace HttpTools
+{
+	// Kept for settings compatibility; the WinInet transport ignores it.
+	static int httpBoostPostTimeout = 0;
+
+	// Progress callback: (bytesTransferred, totalBytes).
+	typedef std::function<void(int, int)> ProgressCallback;
+
+	std::string httpGetString(const std::string& url);
+
+	int httpGet(IInstallerSite *site, std::string host, std::string path, std::string& etag, std::ostream& result, bool ignoreCancel, ProgressCallback progress, bool log = true);
+	int httpPost(IInstallerSite *site, std::string host, std::string path, std::istream& input, const char* contentType, std::ostream& result, bool ignoreCancel, ProgressCallback progress, bool log = true);
+	int httpGetCdn(IInstallerSite *site, std::string secondaryHost, std::string path, std::string& etag, std::ostream& result, bool ignoreCancel, ProgressCallback progress);
+	const std::string getPrimaryCdnHost(IInstallerSite *site);
+	const std::string getCdnHost(IInstallerSite *site);
+}
